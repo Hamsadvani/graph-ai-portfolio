@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamsadvani Kuganantham | Generative AI Portfolio</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2a36;
+      --accent: #2ecc71; /* green accent */
+      --muted: #7f8c8d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Serif headings */
+    h1, h2 { font-family: Georgia, "Times New Roman", serif; }
+
+    /* Announcement bar (optional) */
+    .announcement {
+      background: var(--text);
+      color: #fff;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top left, #f5f8f7 0%, #ffffff 70%);
+      padding: 4rem 1rem 6rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+      line-height: 1.15;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    .hero-lead {
+      font-size: 1.2rem;
+      margin-bottom: 1.75rem;
+      max-width: 50ch;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 0.9rem 1.75rem;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus {
+      background: var(--accent);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
