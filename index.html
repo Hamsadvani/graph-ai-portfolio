@@ -8,24 +8,22 @@
     :root {
       --bg: #ffffff;
       --text: #1f2a36;
-      --accent: #2ecc71; /* green accent */
+      --accent: #2ecc71; /* primary green */
       --muted: #7f8c8d;
+      --nav-height: 72px;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
       color: var(--text);
       background: var(--bg);
+      scroll-behavior: smooth;
     }
 
-    /* Serif headings */
-    h1, h2 { font-family: Georgia, "Times New Roman", serif; }
-
-    /* Announcement bar (optional) */
+    /* Announcement bar */
     .announcement {
       background: var(--text);
       color: #fff;
@@ -34,82 +32,134 @@
       padding: 0.5rem 1rem;
     }
 
-    /* Navigation */
+    /* Navigation – three‑part flex layout */
     nav {
+      height: var(--nav-height);
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: #fff;
-      padding: 1rem 1.5rem;
+      padding: 0 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
       border-bottom: 1px solid #ececec;
     }
 
+    /* Brand avatar */
+    .nav-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
     .nav-brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
+      display: flex;
+      align-items: center;
       text-decoration: none;
     }
 
-    .nav-links {
-      list-style: none;
+    /* Center (links) */
+    .nav-center {
       display: flex;
       gap: 2rem;
-      margin: 0;
-      padding: 0;
+      list-style: none;
     }
 
-    .nav-links a {
+    .nav-center a {
       color: var(--text);
       text-decoration: none;
       font-weight: 600;
     }
 
-    .nav-links a:hover,
-    .nav-links a:focus {
+    .nav-center a:hover,
+    .nav-center a:focus {
       color: var(--accent);
     }
 
-    /* Hero */
-    .hero {
-      background: radial-gradient(circle at top left, #f5f8f7 0%, #ffffff 70%);
-      padding: 4rem 1rem 6rem;
+    /* End (aux links / icons) */
+    .nav-end {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
     }
 
-    .hero-grid {
+    .pill-link {
+      padding: 0.4rem 1rem;
+      border: 2px solid var(--text);
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .pill-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      cursor: pointer;
+      transition: border 0.2s ease-in-out;
+    }
+
+    .icon-btn:hover { border-color: var(--accent); }
+
+    .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 2; }
+    .icon-btn:hover svg { stroke: var(--accent); }
+
+    /* Serif headings */
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top left, #f0f3f2 0%, #fafcfc 70%);
+      padding: 5rem 1rem 7rem;
+      border-bottom-left-radius: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 1100px;
+      gap: 3rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     @media (min-width: 900px) {
-      .hero-grid {
+      .hero-inner {
         grid-template-columns: 1fr 1fr;
         align-items: center;
       }
     }
 
     .hero-title {
-      font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+      font-size: clamp(2.2rem, 4.5vw + 1rem, 4rem);
       line-height: 1.15;
-      margin: 0 0 1rem;
-      color: var(--text);
+      margin-bottom: 1.25rem;
     }
 
+    .hero-title span { color: var(--accent); }
+
     .hero-lead {
-      font-size: 1.2rem;
-      margin-bottom: 1.75rem;
-      max-width: 50ch;
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 55ch;
     }
 
     .cta-btn {
       display: inline-block;
-      padding: 0.9rem 1.75rem;
+      padding: 1rem 2.25rem;
       background: var(--text);
       color: #fff;
       border: none;
@@ -120,9 +170,7 @@
     }
 
     .cta-btn:hover,
-    .cta-btn:focus {
-      background: var(--accent);
-    }
+    .cta-btn:focus { background: var(--accent); }
 
     .hero-image img {
       width: 100%;
@@ -131,10 +179,10 @@
       display: block;
     }
 
-    /* Sections */
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
+    /* Section base styles */
+    section:not(.hero) {
+      max-width: 950px;
+      margin: 4rem auto;
       padding: 0 1rem;
     }
 
@@ -146,26 +194,21 @@
       padding-bottom: 0.25rem;
     }
 
+    /* About grid */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
-    @media (min-width: 640px) {
-      .about-grid { grid-template-columns: 1fr 2fr; }
-    }
+    @media (min-width: 640px) { .about-grid { grid-template-columns: 1fr 2fr; } }
 
     .avatar {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background: #bdc3c7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: #fff;
+      background: url("https://raw.githubusercontent.com/Hamsadvani/graph-ai-portfolio/main/Passport_size_photo%20(1).jpeg") center/cover no-repeat;
+      color: transparent; /* Hide placeholder text */
       margin: 0 auto;
     }
 
@@ -184,79 +227,27 @@
   </style>
 </head>
 <body>
-  <!-- Optional top announcement (delete if unwanted) -->
-  <!-- <div class="announcement">Limited‑time offer: Extra 20% off! 🎉</div> -->
+  <div class="announcement">Limited‑time Offer: 20% off tuition for early applicants! Apply now.</div>
 
+  <!-- Navigation -->
   <nav>
-    <a class="nav-brand" href="#">HK</a>
-    <ul class="nav-links">
+    <a class="nav-brand" href="#"><img src="https://raw.githubusercontent.com/Hamsadvani/graph-ai-portfolio/main/Passport_size_photo%20(1).jpeg" alt="Hamsadvani Kuganantham" class="nav-avatar"></a>
+    <ul class="nav-center">
       <li><a href="#about-me">About</a></li>
       <li><a href="#about-course">Course</a></li>
       <li><a href="#submissions">Submissions</a></li>
     </ul>
+    <div class="nav-end">
+      <a href="#about-course" class="pill-link">Apply now</a>
+      <button class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path></svg>
+      </button>
+    </div>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero" aria-label="Intro">
-    <div class="hero-grid">
+    <div class="hero-inner">
       <div class="hero-text">
-        <h1 class="hero-title">The future of <br><span style="color:var(--accent);">research productivity</span> is here.</h1>
-        <p class="hero-lead">I combine 15&nbsp;years in global health &amp; HEOR with cutting‑edge <strong>Generative AI</strong> to automate data analysis, streamline workflows, and accelerate evidence generation.</p>
-        <a href="#about-me" class="cta-btn">Learn more about me</a>
-      </div>
-      <div class="hero-image">
-        <!-- Replace src with your preferred image -->
-        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=900&q=80" alt="Abstract representation of AI for research productivity">
-      </div>
-    </div>
-  </section>
-
-  <!-- About Me -->
-  <section id="about-me">
-    <h2>About me</h2>
-    <div class="about-grid">
-      <div class="avatar" aria-hidden="true">HK</div>
-      <div>
-        <p>Cochrane‑trained physician and global health professional with 15&nbsp;years’ experience spanning health systems, pharmaceutical pricing &amp; market access, and evidence generation. I have led multi‑disciplinary, international teams at the <strong>World Health Organization</strong>, <strong>University of Oxford</strong>, and <strong>Novartis</strong>, delivering high‑impact research, policy guidance, and HTA dossiers across diverse disease areas. My focus is on leveraging <em>Generative AI</em> and data‑driven methods to streamline workflows, accelerate decision‑making, and expand equitable access to medicines worldwide.</p>
-        <p class="muted">Based in Geneva, Switzerland · MBBS · MSc Health Policy, Planning &amp; Financing (LSHTM &amp; LSE)</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About the Course -->
-  <section id="about-course">
-    <h2>About the course</h2>
-    <p><strong>Generative AI for Work &amp; Research</strong> is an <strong>8‑week</strong>, live online certification designed to help professionals automate data analysis, content creation, and routine tasks without writing code. Delivered by the non‑profit <em>GRAPH Network</em>, the program combines real‑time workshops with hands‑on projects.</p>
-
-    <ul>
-      <li>Automate time‑consuming document, spreadsheet, and data tasks</li>
-      <li>Develop custom chatbots and RAG systems for research support</li>
-      <li>Create professional visuals and presentations with AI tools</li>
-      <li>Apply skills in a capstone project and showcase portfolio</li>
-      <li>Live support via workshops, help sessions, and forums</li>
-    </ul>
-
-    <p class="muted">Next cohort starts <time datetime="2025-05-09">May&nbsp;9&nbsp;2025</time> · Two weekly workshop slots (Fridays 3 pm GMT or Sundays 5 pm GMT)</p>
-  </section>
-
-  <!-- Weekly Submissions -->
-  <section id="submissions">
-    <h2>My weekly submissions</h2>
-    <p>Links to my project work will appear here as the course progresses.</p>
-    <ol>
-      <li>Week&nbsp;1 – Introduction to LLMs: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;2 – Automated Data Analysis: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;3 – Text Analysis &amp; Literature Review: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;4 – Custom Chatbots: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;5 – AI Workflows &amp; Task Automation: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;6 – Communication &amp; Outreach Assets: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;7 – Capstone Project Draft: <a href="#">Coming soon</a></li>
-      <li>Week&nbsp;8 – Capstone Showcase: <a href="#">Coming soon</a></li>
-    </ol>
-  </section>
-
-  <footer>
-    <p>© 2025 Hamsadvani Kuganantham · Portfolio for the Generative AI for Work &amp; Research course</p>
-  </footer>
-</body>
-</html>
+        <h1 class="hero-title">The future of <span>research productivity</span> is here.</h1>
+        <p class="hero-lead">I combine 15&nbsp;years in global health &
